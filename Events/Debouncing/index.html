@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debouncing</title>
+</head>
+<body>
+    <input type="text">
+</body>
+<script>
+        let counter = 0;
+
+    function echoed(){
+        console.log("networkrequests-->"+counter)
+        counter++;
+    }
+    function debounce(echoed,delay){
+        let timeId;
+        return function echoedFn(){
+            clearTimeout(timeId);
+            timeId = setTimeout(() => {
+                echoed();
+            }, delay);
+        }
+       
+    }
+
+    // let optmFn = debounce(echoed,5000);
+
+    function throttle(echoed, interval) {
+        let flag = true;
+        return function echoedFn(){
+            if (flag) {
+                echoed();
+                flag = false;
+                setTimeout(function(){
+                    flag = true;
+                }, interval)
+            } 
+        }
+              
+    }
+    let input = document.querySelector("input");
+
+    let optmFn = throttle(echoed,3000);
+
+    input.addEventListener("keydown",optmFn);
+</script>
+</html>
