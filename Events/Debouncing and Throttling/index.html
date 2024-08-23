@@ -26,7 +26,6 @@
        
     }
 
-    // let optmFn = debounce(echoed,5000);
 
     function throttle(echoed, interval) {
         let flag = true;
@@ -42,8 +41,9 @@
               
     }
     let input = document.querySelector("input");
+    let optmFn = debounce(echoed,5000);
 
-    let optmFn = throttle(echoed,3000);
+    // let optmFn = throttle(echoed,3000);
 
     input.addEventListener("keydown",optmFn);
 </script>
